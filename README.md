@@ -1,5 +1,7 @@
 # Collex
 
+This is the plugin for ARC node websites that run entirely off of Wordpress. It allows a Wordpress site to communicate with the ARC catalog as hosted on [Corpora](https://github.com/bptarpley/corpora).
+
 Note: Not to be confused with the legacy Ruby-on-Rails app for ARC nodes. This is a Wordpress plugin intended to enable
 scholarly engagement with the ARC Catalog from within an ARC node environment.
 
