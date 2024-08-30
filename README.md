@@ -20,6 +20,7 @@ then set the following environment variables:
 To get the ARC Full Search widgets to appear, you must ensure that a page exists in Wordpress containing 3 elements
 (preferably &lt;div&gt;'s) with these respective ID's:
 
+* `arc-user-auth-box` The element with this ID will contain the interface for logging into ARC
 * `arc-fs-search-box` The element with this ID will contain the main search box 
 * `arc-fs-facets-box` The element with this ID will contain the facet tree
 * `arc-fs-results-box` The element with this ID will contain search results
