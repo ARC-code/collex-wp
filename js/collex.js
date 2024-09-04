@@ -604,7 +604,7 @@ class ArcFullSearch {
         this.user = arc_user
         this.federation_handle = null
         this.search_params = {
-            't_federations.id|': this.user.federation_id
+            't_federations.id': this.user.federation_id
         }
 
         this.search_box = jQuery('#arc-fs-search-box')
@@ -703,7 +703,7 @@ class ArcFullSearch {
                     src: async (query) => {
                         const current_autocomplete_request = (new Date()).getTime()
                         let fed_filter = ''
-                        if ('t_federations.id|' in sender.search_params) fed_filter = `&t_federations.id|=${sender.search_params['t_federations.id|']}`
+                        if ('t_federations.id' in sender.search_params) fed_filter = `&t_federations.id=${sender.search_params['t_federations.id']}`
                         const request = await fetch(`${sender.user.host}/api/corpus/${sender.user.corpus_id}/ArcArtifact/suggest/?q=${query}${fed_filter}`)
                         const suggestions = await request.json()
                         if (current_autocomplete_request < sender.last_autocomplete_request) throw Error("Stale autocomplete response")
@@ -928,7 +928,7 @@ class ArcFullSearch {
                                 fed_checks.each(function() {
                                    if (this.checked) feds_selected.push(jQuery(this).data('id'))
                                 })
-                                sender.search_params['t_federations.id|'] = feds_selected.join('__')
+                                sender.search_params['t_federations.id'] = feds_selected.join('__')
                                 sender.populate_results()
                             })
                         }
@@ -1323,7 +1323,7 @@ class ArcFullSearch {
             search['page-size'] = 0
             search['a_terms_federations'] = 'federations.id'
             delete search.page
-            delete search['t_federations.id|']
+            delete search['t_federations.id']
 
             this.user.make_request(
                 `/api/corpus/${this.user.corpus_id}/ArcArtifact/`,
@@ -1337,7 +1337,7 @@ class ArcFullSearch {
                             let facet = jQuery(`#federation-facet-${fed_id}`)
                             if (facet.length) {
                                 facet.show()
-                                if (sender.facet_has_value('t_federations.id|', fed_id))
+                                if (sender.facet_has_value('t_federations.id', fed_id))
                                     jQuery(`#federation-facet-${fed_id}-checkbox`).prop('checked', true)
                                 jQuery(`#federation-facet-${fed_id}-count`).html(fed_count.toLocaleString('en-US'))
                             }
